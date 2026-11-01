@@ -1,0 +1,37 @@
+[extension]
+id = "registry-path"
+version = "0.1.0"
+api_version = 1
+name = "Registry Path"
+description = "Browse the Windows Registry read-only and open keys in regedit."
+min_xefm = "1.12.0"
+platforms = ["windows"]
+
+[contributes.actions]
+"registry.regedit-here" = { entry = "registry_path.actions:regedit_here", description = "Open the current registry key in regedit" }
+
+[contributes.key_suggestions]
+"registry.regedit-here" = ["Alt-Shift-Q"]
+
+[contributes.path_schemes]
+reg = "registry_path.logic:REGISTRY_SCHEME"
+
+[contributes.attributes.reg_type]
+label = "Registry type"
+type = "text"
+read = "registry_path.layout:reg_type"
+where = ["reg"]
+
+[contributes.attributes.reg_data]
+label = "Registry data"
+type = "text"
+read = "registry_path.layout:reg_data"
+where = ["reg"]
+
+[contributes.layout_extras.registry]
+label = "Registry"
+when = "registry_path.layout:in_reg"
+columns = [
+  { attr = "reg_type", format = "registry_path.layout:fmt_type", width = 9, replace = "ext" },
+  { attr = "reg_data", width = 40, replace = "total_size" },
+]
