@@ -1,6 +1,6 @@
 [extension]
 id = "registry-path"
-version = "0.1.0"
+version = "0.1.1"
 api_version = 1
 name = "Registry Path"
 description = "Browse the Windows Registry read-only and open keys in regedit."
